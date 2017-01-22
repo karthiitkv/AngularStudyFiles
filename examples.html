@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>This is Angular JS Examples</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="myCtrl">
+		My wife name is {{name}}
+		
+		<div ng-repeat = "nam in array"> 
+			From Call: {{myWelcome}}
+		</div>
+		<br/><br/>
+		<div>{{}}</div>
+		<br/><br/>
+		<div ng-repeat = "que in queAns"> 
+			Question: {{que.question}}<br/>
+			Answer:   {{que.ans}}<br/><br/>
+		</div>
+		<div>
+		{{queAnsData}}
+		</div>
+	
+	</div>
+	<script>
+		angular.module("myApp", []).controller('myCtrl', function($scope, $location, $http) {
+			$scope.myUrl = $location.absUrl();
+			$scope.name = "Vinothini";
+			$scope.array = ['test', 'karthi', 'vinothini']
+			var queServiceUrl = "http://onlinetest-kvkit.rhcloud.com/kvkapi/getAllQueAns"
+			/*$http.get(queServiceUrl).then(function(response) {
+			
+				$scope.queAnsData = response.data;
+			});*/
+			$http({
+				method : "GET",
+				url : "https://jsonplaceholder.typicode.com/posts/1"
+				/*headers: {
+					'accept': 'application/json'
+				}*/
+			}).then(function(response) {
+			alert("Response - "+response);
+			console.log(response);
+				$scope.myWelcome = response.data;
+				alert("Hi");
+			}, function(response) {
+			console.log(response);
+			alert("Response - "+response.statusText);
+				alert("Hello");
+				$scope.myWelcome = response.statusText;
+			});
+			$scope.queAns = [
+			{
+			"ans": "Tiger",
+			"difficultLevel": 1,
+			"display": false,
+			"opt1": "Tiger",
+			"opt2": "Elephant",
+			"opt3": "Peocock",
+			"opt4": "Pegion",
+			"queId": 1,
+			"question": "What is out national animal"
+			},
+			{
+			"ans": "largest railway station",
+			"difficultLevel": 1,
+			"display": false,
+			"opt1": "largest railway station",
+			"opt2": "longest railway station",
+			"opt3": "highest railway station",
+			"opt4": "None of the above",
+			"queId": 2,
+			"question": "Grand Central Terminal, Park Avenue, New York is the world's"
+			},
+			{
+			"ans": "Insects",
+			"difficultLevel": 1,
+			"display": false,
+			"opt1": "Behavior of human beings",
+			"opt2": "Insects",
+			"opt3": "The origin and history of technical and scientific terms",
+			"opt4": "The formation of rocks",
+			"queId": 3,
+			"question": "Entomology is the science that studies"
+			},
+			{
+			"ans": "All of the above",
+			"difficultLevel": 1,
+			"display": false,
+			"opt1": "Physics and Chemistry",
+			"opt2": "Physiology or Medicine",
+			"opt3": "Literature, Peace and Economics",
+			"opt4": "All of the above",
+			"queId": 4,
+			"question": "For which of the following disciplines is Nobel Prize awarded?"
+			},
+			{
+			"ans": "Tiger",
+			"difficultLevel": 1,
+			"display": true,
+			"opt1": "Tiger",
+			"opt2": "Elephant",
+			"opt3": "Peocock",
+			"opt4": "Pegion",
+			"queId": 5,
+			"question": "What is out national animal"
+			},
+			{
+			"ans": "largest railway station",
+			"difficultLevel": 1,
+			"display": true,
+			"opt1": "largest railway station",
+			"opt2": "longest railway station",
+			"opt3": "highest railway station",
+			"opt4": "None of the above",
+			"queId": 6,
+			"question": "Grand Central Terminal, Park Avenue, New York is the world's"
+			},
+			{
+			"ans": "Insects",
+			"difficultLevel": 1,
+			"display": true,
+			"opt1": "Behavior of human beings",
+			"opt2": "Insects",
+			"opt3": "The origin and history of technical and scientific terms",
+			"opt4": "The formation of rocks",
+			"queId": 7,
+			"question": "Entomology is the science that studies"
+			},
+			{
+			"ans": "All of the above",
+			"difficultLevel": 1,
+			"display": true,
+			"opt1": "Physics and Chemistry",
+			"opt2": "Physiology or Medicine",
+			"opt3": "Literature, Peace and Economics",
+			"opt4": "All of the above",
+			"queId": 8,
+			"question": "For which of the following disciplines is Nobel Prize awarded?"
+			}
+			]
+		});
+	</script>
+</body>
+<html>
